@@ -52,6 +52,10 @@ int binary_tree_is_perfect(const binary_tree_t *tree);
 int check_tree_if_perfect(const binary_tree_t *tree);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second);
+void launch_test(binary_tree_t *n1, binary_tree_t *n2);
+binary_tree_t *binary_tree_parent_within(const binary_tree_t *first, const binary_tree_t *second);
+
 
 
 #endif /* _BINARY_TREES_H_ */
