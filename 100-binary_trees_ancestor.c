@@ -17,9 +17,11 @@ binary_tree_t *binary_trees_ancestor(
 	if (!first || !second)
 		return (NULL);
 
-	if (first == second->parent)
+	if ((first == second->parent) || (check_node_is_ancestor(
+					(binary_tree_t *)first, (binary_tree_t *)second)))
 		return ((binary_tree_t *)first);
-	else if (second == first->parent)
+	else if ((second == first->parent) || (check_node_is_ancestor(
+				(binary_tree_t *)second, (binary_tree_t *)first)))
 		return ((binary_tree_t *)second);
 
 	first_dp = binary_tree_depth(first);
