@@ -55,7 +55,7 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node);
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second);
 void launch_test(binary_tree_t *n1, binary_tree_t *n2);
 binary_tree_t *binary_tree_parent_within(const binary_tree_t *first, const binary_tree_t *second);
-
+binary_tree_t *check_node_is_ancestor(binary_tree_t *node, binary_tree_t *child);
 
 
 #endif /* _BINARY_TREES_H_ */

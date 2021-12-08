@@ -11,6 +11,7 @@
 binary_tree_t *binary_trees_ancestor(
 		const binary_tree_t *first, const binary_tree_t *second)
 {
+	binary_tree_t *tmp;
 	int first_dp, second_dp;
 
 	if (!first || !second)
@@ -25,8 +26,25 @@ binary_tree_t *binary_trees_ancestor(
 	second_dp = binary_tree_depth(second);
 
 	if (first_dp >= second_dp)
-		return (second->parent);
-	return (first->parent);
+	{
+		tmp = second->parent;
+		while (tmp)
+		{
+			if (check_node_is_ancestor(tmp, (binary_tree_t *)first))
+				return (tmp);
+			tmp = tmp->parent;
+		}
+		return (NULL);
+	}
+
+	tmp = first->parent;
+	while (tmp)
+	{
+		if (check_node_is_ancestor(tmp, (binary_tree_t *)second))
+			return (tmp);
+		tmp = tmp->parent;
+	}
+	return (NULL);
 }
 
 
@@ -42,4 +60,26 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 	return (tree->parent ? 1 + binary_tree_depth(tree->parent) : 0);
+}
+
+
+/**
+ * check_node_is_ancestor - Checks if a node is ancestor
+ *
+ * @node: Pointer to the node to check if ancestor
+ * @child: Pointer to check if @node is ancestor
+ *
+ * Return: Pointer to node if ancestor, or NULL if not
+ */
+binary_tree_t *check_node_is_ancestor(binary_tree_t *node,
+		binary_tree_t *child)
+{
+	if (node && child)
+	{
+		if ((node->left == child || node->right == child)
+				|| check_node_is_ancestor(node->left, child)
+				|| check_node_is_ancestor(node->right, child))
+			return (node);
+	}
+	return (NULL);
 }
